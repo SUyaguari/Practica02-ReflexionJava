@@ -15,35 +15,34 @@ import java.util.Objects;
  */
 public class Persona {
     
+    private int id;
     private String cedula;
     private String nombre;
     private String apellido;
     private String direccion;
-    private List<Telefono> listaTelefonos;
     
     public Persona() {
+        this.id = -1;
         this.cedula = "";
         this.nombre = "";
         this.apellido = "";
         this.direccion = "";
-        this.listaTelefonos = new ArrayList<>();
     }
 
-    public Persona(String cedula, String nombre, String apellido, String direccion) {
+    public Persona(int id, String cedula, String nombre, String apellido, String direccion) {
+        this.id = id;
         this.cedula = cedula;
         this.nombre = nombre;
         this.apellido = apellido;
         this.direccion = direccion;
-        this.listaTelefonos = new ArrayList<>();
     }
 
-    public Persona(String cedula, String nombre, String apellido, String direccion, List<Telefono> listaTelefonos) {
-        this.cedula = cedula;
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.direccion = direccion;
-        this.listaTelefonos = listaTelefonos;
-        this.listaTelefonos = new ArrayList<>();
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getCedula() {
@@ -78,18 +77,10 @@ public class Persona {
         this.direccion = direccion;
     }
 
-    public List<Telefono> getListaTelefonos() {
-        return listaTelefonos;
-    }
-
-    public void setListaTelefonos(List<Telefono> listaTelefonos) {
-        this.listaTelefonos = listaTelefonos;
-    }
-
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 89 * hash + Objects.hashCode(this.cedula);
+        int hash = 7;
+        hash = 97 * hash + this.id;
         return hash;
     }
 
@@ -105,7 +96,7 @@ public class Persona {
             return false;
         }
         final Persona other = (Persona) obj;
-        if (!Objects.equals(this.cedula, other.cedula)) {
+        if (this.id != other.id) {
             return false;
         }
         return true;
@@ -113,8 +104,7 @@ public class Persona {
 
     @Override
     public String toString() {
-        return "Persona{" + "cedula=" + cedula + ", nombre=" + nombre + ", apellido=" + apellido + ", direccion=" + direccion + ", listaTelefonos=" + listaTelefonos + '}';
+        return "Persona{" + "id=" + id + ", cedula=" + cedula + ", nombre=" + nombre + ", apellido=" + apellido + ", direccion=" + direccion + '}';
     }
-    
     
 }

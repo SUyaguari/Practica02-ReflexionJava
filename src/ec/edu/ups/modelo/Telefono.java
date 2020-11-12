@@ -15,19 +15,22 @@ public class Telefono {
     private String numero;
     private String tipo;
     private String operadora;
+    private Persona persona;
 
     public Telefono() {
         this.codigo = -1;
         this.numero = "";
         this.tipo = "";
         this.operadora = "";
+        this.persona = null;
     }
 
-    public Telefono(int codigo, String numero, String tipo, String operadora) {
+    public Telefono(int codigo, String numero, String tipo, String operadora, Persona persona) {
         this.codigo = codigo;
         this.numero = numero;
         this.tipo = tipo;
         this.operadora = operadora;
+        this.persona = persona;
     }
 
     public int getCodigo() {
@@ -62,6 +65,14 @@ public class Telefono {
         this.operadora = operadora;
     }
 
+    public Persona getPersona() {
+        return persona;
+    }
+
+    public void setPersona(Persona persona) {
+        this.persona = persona;
+    }
+
     @Override
     public int hashCode() {
         int hash = 5;
@@ -89,9 +100,7 @@ public class Telefono {
 
     @Override
     public String toString() {
-        return "Telefono{" + "codigo=" + codigo + ", numero=" + numero + ", tipo=" + tipo + ", operadora=" + operadora + '}';
+        return "Telefono{" + "codigo=" + codigo + ", numero=" + numero + ", tipo=" + tipo + ", operadora=" + operadora + ", persona=" + persona + '}';
     }
-
-    
     
 }

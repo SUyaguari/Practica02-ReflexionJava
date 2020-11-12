@@ -5,8 +5,11 @@
  */
 package ec.edu.ups.controlador;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 
 /**
  *
@@ -21,11 +24,19 @@ public abstract class AbstractControlador<T> {
     }
     
     public boolean create(T objeto){
-        return lista.add(objeto);
+        if(validar(objeto)==true){
+            return lista.add(objeto);
+        }
+        return false;
     }
     
-    public T read(T id){
-        return lista.stream().filter(ob -> ob.equals(id)).findFirst().get();
+    public T read(Predicate<T> id){
+        try {
+            return lista.stream().filter(id).findFirst().get();
+        } catch (Exception e) {
+            System.out.println("No se encontro, lo que buscaba "+e);
+            return null;
+        }
     }
 
     public boolean update(T objeto){
@@ -41,6 +52,10 @@ public abstract class AbstractControlador<T> {
         return (lista.contains(objeto))? lista.remove(objeto): false;
     }
     
+    public abstract boolean validar(T objeto);
+    
+    public abstract void ordenarLista();
+    
     public int buscarPosicion(T buscar){
         for (int i = 0; i < lista.size(); i++) {
             var objeto = lista.get(i);
@@ -49,4 +64,27 @@ public abstract class AbstractControlador<T> {
         }
         return -1;
     }
+
+    public List<T> getLista() {
+        return lista;
+    }
+
+    public void setLista(List<T> lista) {
+        this.lista = lista;
+    }
+    
+    public void imprimirListaReflexion(List lista){
+        for (Object object : lista) {
+            Method[] metodos = object.getClass().getMethods();
+            for(Method m: metodos){
+                try{
+                    var variable = m.invoke(object, null);
+                    
+                }catch(IllegalAccessException | IllegalArgumentException | InvocationTargetException e){
+                    System.out.println("Error imprimir lista reflexion: "+e);
+                }
+            }
+        }
+    }
+    
 }
