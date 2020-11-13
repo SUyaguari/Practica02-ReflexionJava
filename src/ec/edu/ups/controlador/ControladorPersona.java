@@ -41,8 +41,12 @@ public class ControladorPersona extends AbstractControlador<Persona>{
     
     public int generarID(){
         List<Persona> lista = getLista();
-        if (lista.size()>0)
+        if (lista.size()>0){
             return lista.get(lista.size()-1).getId()+1;
-        return 1;
+            
+        }else{
+            return 1;
+            
+        }
     }
 }

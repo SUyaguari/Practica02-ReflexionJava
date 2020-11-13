@@ -10,6 +10,8 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -77,13 +79,21 @@ public abstract class AbstractControlador<T> {
         for (Object object : lista) {
             Method[] metodos = object.getClass().getMethods();
             for(Method m: metodos){
-                try{
-                    var variable = m.invoke(object, null);
-                    
-                }catch(IllegalAccessException | IllegalArgumentException | InvocationTargetException e){
-                    System.out.println("Error imprimir lista reflexion: "+e);
+                
+                if(m.getName().substring(0,3).equals("get")){
+                    try {
+                       Object variable = (Object) m.invoke(object, null);
+                       System.out.print(variable+"  ");
+                    } catch (IllegalAccessException ex) {
+                       Logger.getLogger(AbstractControlador.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (IllegalArgumentException ex) {
+                       Logger.getLogger(AbstractControlador.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (InvocationTargetException ex) {
+                       Logger.getLogger(AbstractControlador.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 }
             }
+            System.out.println("");
         }
     }
     
