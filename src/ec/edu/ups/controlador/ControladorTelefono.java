@@ -5,7 +5,9 @@
  */
 package ec.edu.ups.controlador;
 
+import ec.edu.ups.modelo.Persona;
 import ec.edu.ups.modelo.Telefono;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -50,6 +52,18 @@ public class ControladorTelefono extends AbstractControlador<Telefono>{
             return 1;
             
         }
+    }
+    
+    public List buscarTelefonoPersona(int id){
+        List<Telefono> lista = new ArrayList<>();
+        List<Telefono> listaTelefonos = getLista();
+        for (Telefono listaTelefono : listaTelefonos) {
+            Persona persona = listaTelefono.getPersona();
+            if(persona.getId()==id){
+                lista.add(listaTelefono);
+            }
+        }
+        return lista;
     }
     
 }
