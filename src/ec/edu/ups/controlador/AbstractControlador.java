@@ -62,7 +62,7 @@ public abstract class AbstractControlador<T> {
     
     public int buscarPosicion(T buscar){
         for (int i = 0; i < lista.size(); i++) {
-            var objeto = lista.get(i);
+            Object objeto = lista.get(i);
             if(objeto.equals(buscar))
                 return i;
         }

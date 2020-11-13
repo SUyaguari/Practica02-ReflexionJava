@@ -29,7 +29,7 @@ public class ControladorPersona extends AbstractControlador<Persona>{
         for (int i = 0; i < lista.size()-1; i++) {
             for (int j = i+1; j < lista.size(); j++) {
                 if(lista.get(i).getApellido().compareTo(lista.get(j).getApellido())>0){
-                    var aux = lista.get(i);
+                    Persona aux = lista.get(i);
                     lista.set(i, lista.get(j));
                     lista.set(j, aux);
                 }

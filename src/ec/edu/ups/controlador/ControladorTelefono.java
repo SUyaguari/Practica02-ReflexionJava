@@ -25,7 +25,7 @@ public class ControladorTelefono extends AbstractControlador<Telefono>{
         for (int i = 0; i < lista.size()-1; i++) {
             for (int j = i+1; j < lista.size(); j++) {
                 if(lista.get(i).getNumero().compareTo(lista.get(j).getNumero())>0){
-                    var aux = lista.get(i);
+                    Telefono aux = lista.get(i);
                     lista.set(i, lista.get(j));
                     lista.set(j, aux);
                 }
