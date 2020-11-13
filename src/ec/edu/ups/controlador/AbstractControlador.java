@@ -58,6 +58,8 @@ public abstract class AbstractControlador<T> {
     
     public abstract void ordenarLista();
     
+    public abstract int generarId();
+    
     public int buscarPosicion(T buscar){
         for (int i = 0; i < lista.size(); i++) {
             var objeto = lista.get(i);
@@ -96,5 +98,4 @@ public abstract class AbstractControlador<T> {
             System.out.println("");
         }
     }
-    
 }

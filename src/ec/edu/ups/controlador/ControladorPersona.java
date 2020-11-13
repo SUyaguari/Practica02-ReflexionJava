@@ -26,6 +26,7 @@ public class ControladorPersona extends AbstractControlador<Persona>{
     @Override
     public void ordenarLista() {
         List<Persona> lista = getLista();
+        System.out.println(lista);
         for (int i = 0; i < lista.size()-1; i++) {
             for (int j = i+1; j < lista.size(); j++) {
                 if(lista.get(i).getApellido().compareTo(lista.get(j).getApellido())>0){
@@ -39,11 +40,19 @@ public class ControladorPersona extends AbstractControlador<Persona>{
     }
 
     
-    public int generarID(){
+    @Override
+    public int generarId(){
         List<Persona> lista = getLista();
+        System.out.println(lista);
+        int codigo = 0;
         if (lista.size()>0){
-            return lista.get(lista.size()-1).getId()+1;
-            
+            for (Persona persona : lista) {
+                int aux = persona.getId();
+                if(aux>codigo){
+                    codigo=aux;
+                }
+            }
+            return codigo+1;
         }else{
             return 1;
             
