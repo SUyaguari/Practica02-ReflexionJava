@@ -158,6 +158,8 @@ public class PantallaListarTelefonos extends javax.swing.JFrame {
     private void jBtnListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnListarActionPerformed
         List<Telefono> lista = controladorTelefono.getLista();
         
+        controladorTelefono.imprimirListaReflexion(lista);
+        
         DefaultTableModel modelo = (DefaultTableModel) jTblTelefonos.getModel();
         modelo.setRowCount(0);
         

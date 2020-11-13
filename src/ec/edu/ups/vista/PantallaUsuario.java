@@ -635,6 +635,8 @@ public class PantallaUsuario extends javax.swing.JFrame {
     
     public void llenarTabla(){
         List<Persona> lista = controladorPersona.getLista();
+    
+        controladorPersona.imprimirListaReflexion(lista);
         
         DefaultTableModel modelo = (DefaultTableModel) jTblUsuario.getModel();
         modelo.setRowCount(0);
